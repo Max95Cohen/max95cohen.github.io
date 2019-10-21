@@ -1,1 +1,219 @@
-<pre>Hello, how are you?
+
+<!doctype html>
+<html>
+<head>
+<link href="http://kkk.local/arnumber.png"rel="shortcut icon"type="image/png">
+<link href="http://kkk.local/a.css"rel="stylesheet"type="text/css">
+<link href="a.css"rel="stylesheet"type="text/css">
+<meta http-equiv="content-type"content="text/html;charset=utf-8">
+<meta name="robots"content="nofollow,noindex">
+<meta name="viewport"content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=yes">
+<title>arnumber</title>
+</head>
+<body onkeydown="a_keydown(event);">
+<div id="ahide">
+	<div id="afirst"class="ahide"></div>
+</div>
+<div class="aform">
+	<div class="amb10">
+		<button class="acheckbox achecked"onclick="a_checkbox(this);">
+			<span class="als">abcdefghijklmnopqrstuvwxyz</span>
+		</button>
+		<input min="0"max="10"name="abc"onchange="a_generate();"type="number"value="3">
+	</div>
+	<div class="amb10">
+		<button class="acheckbox achecked"onclick="a_checkbox(this);">
+			<span class="als">ABCDEFGHIJKLMNOPQRSTUVWXYZ</span>
+		</button>
+		<input min="0"max="10"name="ABC"onchange="a_generate();"type="number"value="3">
+	</div>
+	<div class="amb10">
+	<button class="acheckbox achecked"onclick="a_checkbox(this);">
+		<span class="als">1234567890</span>
+	</button>
+	<input min="0"max="10"name="numbers"onchange="a_generate();"type="number"value="3">
+	</div>
+	<div id="asymbols">
+		<div class="atable">
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">`</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">~</span></button>
+			<button class="acheckbox achecked"onclick="a_checkbox(this);"><span class="als">!</span></button>
+			<button class="acheckbox achecked"onclick="a_checkbox(this);"><span class="als">@</span></button>
+			<button class="acheckbox achecked"onclick="a_checkbox(this);"><span class="als">#</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">$</span></button>
+		</div>
+		<div class="atable">
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">%</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">^</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">&</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">*</span></button>
+			<button class="acheckbox achecked"onclick="a_checkbox(this);"><span class="als">_</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">|</span></button>
+		</div>
+		<div class="atable">
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">:</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">=</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">?</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">(</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">)</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">{</span></button>
+		</div>
+		<div class="atable">
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">}</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">[</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">]</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">\</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">/</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als"><</span></button>
+		</div>
+		<div class="atable">
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">></span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">:</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">;</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">"</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">'</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">-</span></button>
+		</div>
+		<div class="atable amb10">
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">+</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">,</span></button>
+			<button class="acheckbox"onclick="a_checkbox(this);"><span class="als">.</span></button>
+		</div>
+	</div>
+	<button onclick="a_generate();">Құрастыру</button><span class="aml10">Символдар саны: <span id="acount"></span></span>
+	<div class="amt10">
+		<input class="amono alc"name="alower"type="text">
+		<input class="amono"name="aoriginal"type="text">
+	</div>
+</div>
+
+<script type="text/javascript">
+var d=document,w=window,abc,ABC,numbers;
+a_generate();
+function a_checkbox(o)
+{
+	if(o.checked)
+	{
+		o.checked=0;
+	}
+	else
+	{
+		o.checked=1;
+	}
+	o.classList.toggle('achecked');
+	a_symbols();
+}
+function a_symbols()
+{
+	var abc=d.getElementsByClassName('acheckbox')[0];
+	if(!abc.classList.contains('achecked'))
+	{
+		abc=0;
+	}
+	else
+	{
+		abc=+d.getElementsByName('abc')[0].value;
+	}
+	var ABC=d.getElementsByClassName('acheckbox')[1];
+	if(!ABC.classList.contains('achecked'))
+	{
+		ABC=0;
+	}
+	else
+	{
+		ABC=+d.getElementsByName('ABC')[0].value;
+	}
+	var numbers=d.getElementsByClassName('acheckbox')[2];
+	if(!numbers.classList.contains('achecked'))
+	{
+		numbers=0;
+	}
+	else
+	{
+		numbers=+d.getElementsByName('numbers')[0].value;
+	}
+	var s=d.getElementById('asymbols').getElementsByClassName('achecked');
+	var l=s.length;
+	d.getElementById('acount').innerText=l+abc+ABC+numbers;
+}
+function a_generate()
+{
+	abc=+d.getElementsByName('abc')[0].value;
+	ABC=+d.getElementsByName('ABC')[0].value;
+	numbers=+d.getElementsByName('numbers')[0].value;
+	var r='';
+	var acheckboxes=d.getElementsByClassName('acheckbox');
+	var l=acheckboxes.length;
+	for(var a=0;a<l;a++)
+	{
+		var acheckbox=acheckboxes[a];
+		if(acheckbox.classList.contains('achecked'))
+		{
+			var e=acheckbox.firstElementChild.innerText;
+			var n=e.length;
+			if(a==0)
+			{
+				n=abc;
+			}
+			if(a==1)
+			{
+				n=ABC;
+			}
+			if(a==2)
+			{
+				n=numbers;
+			}
+			r+=a_random(e,n);
+		}
+	}
+	r=a_shuffle(r);
+	r=r.join('');
+	var t=d.createElement('textarea');
+	t.innerHTML=r;
+	d.getElementsByName('alower')[0].value=t.value;
+	d.getElementsByName('aoriginal')[0].value=t.value;
+	a_symbols();
+}
+function a_random(s,l)
+{
+	var r='';
+	for(var a=0;a<l;a++)
+	{
+		var b=Math.floor(Math.random()*(s.length));
+		r+=s[b];
+	}
+	return r;
+}
+function a_shuffle(s)
+{
+	var a,b,c,d,l=s.length,r=[];
+	for(a=0;a<l;a++)
+	{
+		r[a]=s[a];
+	}
+	for(a=0;a<l;a++)
+	{
+		b=Math.floor(Math.random()*l);
+		c=Math.floor(Math.random()*l);
+		if(b==c)
+		{
+			c=Math.floor(Math.random()*l);
+		}
+		d=r[b];
+		r[b]=r[c];
+		r[c]=d;
+	}
+	return r;
+}
+function a_keydown(e)
+{
+	var e=e||window.event;
+	var k=e.keyCode;
+	if((e.ctrlKey)&&(k==13))
+	{
+		a_generate();
+	}
+}
+</script>
+</body>
+</html>
