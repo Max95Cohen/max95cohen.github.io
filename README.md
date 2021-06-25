@@ -1,2 +1,3 @@
 # max95cohen.github.io
-Hello, how are you?
+
+The generator of random string for password, tokens, keys and etc...
